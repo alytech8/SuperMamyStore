@@ -381,7 +381,7 @@
             <p>• استخدام موقعنا يعني موافقتك على هذه السياسة.</p>
             <p>آخر تحديث: أبريل 2026</p>
         </div>
-        <button class="close-btn-center" onclick="closeInfoModal('privacyPolicy')">إغلاق</button>
+        <button class="close-btn-center" onclick="closeInfoModal('privacyModal')">إغلاق</button>
     </div>
 </div>
 
@@ -753,7 +753,7 @@
             document.getElementById("landingPage").innerHTML = `
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
                     <div onclick="goHome()" style="cursor:pointer; color:var(--primary); font-weight:bold;"><i class="fas fa-arrow-right"></i> العودة للمتجر</div>
-                    <div class="glass-btn" onclick="shareProduct('${p.name}')"><i class="fas fa-share-alt"></i> مشاركة</div>
+                    <div class="glass-btn" onclick="shareProduct('${escapeHtml(p.name)}')"><i class="fas fa-share-alt"></i> مشاركة</div>
                 </div>
                 
                 <h1 class="product-name">${escapeHtml(p.name)}</h1>
