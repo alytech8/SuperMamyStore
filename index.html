@@ -489,7 +489,6 @@
     let currentLeft = 0;
     let currentTryImageSrc = "";
 
-    // دالة لتحديث جميع Meta tags الخاصة بـ Open Graph و Twitter لجعل المنتج يظهر بشكل صحيح عند المشاركة في فيسبوك
     function updateMetaTagsForProduct(product) {
         if (!product) return;
         const siteUrl = window.location.origin + window.location.pathname;
@@ -828,7 +827,7 @@
                     </div>` : '').join('')}
                 </div>
                 
-                <button onclick="openOrderModal('${p.name}')" style="width:100%; padding:20px; background:var(--success); border:none; color:white; border-radius:60px; font-weight:bold; font-size:1.2rem; margin-top:30px; cursor:pointer; box-shadow: 0 8px 20px rgba(16,185,129,0.3); font-family: 'Cairo', sans-serif;">
+                <button onclick="openOrderModal('${escapeHtml(p.name)}')" style="width:100%; padding:20px; background:var(--success); border:none; color:white; border-radius:60px; font-weight:bold; font-size:1.2rem; margin-top:30px; cursor:pointer; box-shadow: 0 8px 20px rgba(16,185,129,0.3); font-family: 'Cairo', sans-serif;">
                     اطلب الآن عبر واتساب <i class="fab fa-whatsapp" style="margin-right:8px;"></i>
                 </button>
             `;
@@ -965,11 +964,9 @@
 
     function escapeHtml(str) {
         if(!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-            if(m === '&') return '&amp;';
-            if(m === '<') return '&lt;';
-            if(m === '>') return '&gt;';
-            return m;
+        return str.replace(/[&<>"']/g, function(m) {
+            const map = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'};
+            return map[m];
         });
     }
 
